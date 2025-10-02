@@ -24,7 +24,7 @@ def registrar_trabajador(trabajadores):
                     'Sueldo_Liquido':sueldo_liquido
                 })
 
-                with open('datos.json','w') as archivo:
+                with open('dataBase.json','w') as archivo:
                     json.dump(trabajadores,archivo, indent=4)
 
                 print("¿Deseas seguir agregando?")
@@ -39,7 +39,7 @@ def registrar_trabajador(trabajadores):
 
 def listar_trabajadores():
     
-    with open('datos.json','r') as archivo:
+    with open('dataBase.json','r') as archivo:
         lector_datos = json.load(archivo)
 
         for trabajador in lector_datos:
@@ -50,7 +50,7 @@ def imprimir_plantilla():
     cargos = ["ceo","programador","analista"]
     trabajadores_por_cargo = []
 
-    with open('datos.json','r') as archivo:
+    with open('dataBase.json','r') as archivo:
             lector_datos = json.load(archivo)
 
     print("¿Desea imprimir todos?")
@@ -63,7 +63,7 @@ def imprimir_plantilla():
                     if trabajador['cargo'] == opcion:
                         trabajadores_por_cargo = trabajador
                         
-                with open('cargos.json','w') as archivo:
+                with open('informePorCargo.json','w') as archivo:
                     json.dump(trabajadores_por_cargo,archivo,indent=4)
                     
             else:
@@ -71,4 +71,5 @@ def imprimir_plantilla():
     else:
 
         for trabajador in lector_datos:
-            print(trabajador)
+            with open('informePorCargo.json','w') as archivo:
+                    json.dump(trabajador,archivo,indent=4)
